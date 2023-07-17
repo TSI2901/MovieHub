@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace MovieHub.Data.Models
 {
-    public class Director
+    public class Studio
     {
         [Key]
         public Guid Id { get; set; }
+
     }
 }

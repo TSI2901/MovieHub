@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Movie_Hub.Models;
+using MovieHub.ViewModels;
 using System.Diagnostics;
 
 namespace Movie_Hub.Controllers

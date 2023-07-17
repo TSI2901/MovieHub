@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieHub.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,9 +8,12 @@ using System.Threading.Tasks;
 
 namespace MovieHub.Data.Models
 {
-    public class Director
+    public class Reward
     {
         [Key]
         public Guid Id { get; set; }
+        [Required]
+        [MaxLength(GeneralApplicationConstants.RewardConstants.RewardNameMaxLength)]
+        public string Title { get; set; } = null!;
     }
 }

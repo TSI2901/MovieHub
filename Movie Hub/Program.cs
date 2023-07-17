@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Movie_Hub.Data;
 using MovieHub.Data;
 
-namespace Movie_Hub
+namespace MovieHub
 {
     public class Program
     {
