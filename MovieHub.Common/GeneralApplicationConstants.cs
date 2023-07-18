@@ -23,11 +23,19 @@ namespace MovieHub.Common
 
             public const int CityNameMinLength = 1;
             public const int CityNameMaxLength = 58;
+
+            public const int DescriptionMinLength = 15;
+            public const int DescriptionMaxLength = 1000;
         }
         public static class RewardConstants
         {
             public const int RewardNameMinLength = 6;
             public const int RewardNameMaxLength = 21;
+        }
+        public static class StudioConstants
+        {
+            public const int StudioNameMinLength = 1;
+            public const int StudioNameMaxLength = 50;
         }
     }
 }

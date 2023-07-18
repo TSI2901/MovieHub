@@ -13,8 +13,10 @@ namespace MovieHub.Data.Models
     {
         public Movie()
         {
-            movieActors = new HashSet<MovieActor>();
-            rewards = new List<Reward>();
+            MovieActors = new HashSet<MovieActor>();
+            Rewards = new List<Reward>();
+            MovieDirectors = new HashSet<MovieDirector>();
+            Categories = new HashSet<MovieCategory>();
         }
         [Key]
         public Guid Id { get; set; }
@@ -38,10 +40,17 @@ namespace MovieHub.Data.Models
         [Required]
         public int MovieLength { get; set; }
 
+        [Required]
+        public string ImgURL { get; set; } = null!;
+
         public decimal Budget { get; set; }
 
-        public ICollection<MovieActor> movieActors { get; set; }
+        public ICollection<MovieActor> MovieActors { get; set; }
 
-        public ICollection<Reward> rewards { get; set; }
+        public ICollection<MovieDirector> MovieDirectors { get; set; }
+
+        public ICollection<Reward> Rewards { get; set; }
+
+        public ICollection<MovieCategory> Categories { get; set; }
     }
 }
