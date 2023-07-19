@@ -14,6 +14,7 @@ namespace MovieHub.Data.Models
         [ForeignKey("Movie")]
         public Guid MovieId { get; set; }
         public Movie Movie { get; set; } = null!;
+
         [Required]
         [ForeignKey("Director")]
         public Guid DirectorId { get; set; }

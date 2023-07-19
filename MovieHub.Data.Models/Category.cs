@@ -14,7 +14,7 @@ namespace MovieHub.Data.Models
             Movies = new HashSet<MovieCategory>();
         }
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public string Name { get; set; } = null!;

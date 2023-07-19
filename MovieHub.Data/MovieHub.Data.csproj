@@ -17,4 +17,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MovieHub.Data.Models\MovieHub.Data.Models.csproj" />
+  </ItemGroup>
+
 </Project>
