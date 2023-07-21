@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MovieHub.Contracts\MovieHub.Contracts.csproj" />
+    <ProjectReference Include="..\MovieHub.Data\MovieHub.Data.csproj" />
   </ItemGroup>
 
 </Project>

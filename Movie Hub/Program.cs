@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MovieHub.Contracts;
+using MovieHub.Services;
 using MovieHub.Data;
 
 namespace MovieHub
@@ -20,6 +22,7 @@ namespace MovieHub
                 .AddEntityFrameworkStores<MovieHubDbContext>();
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddScoped<ILibraryService, MovieHub.Services.LibraryService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MovieHub.Contracts;
 
 namespace Movie_Hub.Controllers
 {
     public class LibraryController : BaseController
     {
-        public IActionResult All()
+        private readonly ILibraryService service;
+
+        public LibraryController(ILibraryService service)
         {
-            return View();
+            this.service = service;
+        }
+
+        public async Task<IActionResult> All()
+        {
+            var models =  await service.GetAllMovies();
+            return View(models);
         }
     }
 }

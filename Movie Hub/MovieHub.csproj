@@ -21,8 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MovieHub.Contracts\MovieHub.Contracts.csproj" />
     <ProjectReference Include="..\MovieHub.Data.Models\MovieHub.Data.Models.csproj" />
     <ProjectReference Include="..\MovieHub.Data\MovieHub.Data.csproj" />
+    <ProjectReference Include="..\MovieHub.Services\MovieHub.Services.csproj" />
     <ProjectReference Include="..\MovieHub.ViewModels\MovieHub.ViewModels.csproj" />
   </ItemGroup>
 

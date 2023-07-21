@@ -9,12 +9,16 @@ namespace MovieHub.ViewModels
 {
     public class AllMoviesViewModel
     {
+        public AllMoviesViewModel()
+        {
+            Categories = new HashSet<string>();
+        }
         public Guid Id { get; set; }
         public string Name { get; set; } = null!;
         public string ImgURL { get; set; } = null!;
 
         public DateTime CreatedOn { get; set; }
-        public Category Category { get; set; } = null!;
+        public ICollection<string> Categories { get; set; } = null!;
         public int MovieLength { get; set; }
     }
 }
