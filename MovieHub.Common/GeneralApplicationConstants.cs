@@ -32,6 +32,11 @@ namespace MovieHub.Common
             public const int RewardNameMinLength = 6;
             public const int RewardNameMaxLength = 55;
         }
+        public static class DirectorConstants
+        {
+            public const int DirectorNameMinLength = 1;
+            public const int DirectorNameMaxLength = 1000;
+        }
         public static class StudioConstants
         {
             public const int StudioNameMinLength = 1;
