@@ -22,6 +22,18 @@ namespace MovieHub
                 .AddEntityFrameworkStores<MovieHubDbContext>();
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+            .AddEntityFrameworkStores<MovieHubDbContext>();
+            builder.Services.AddControllersWithViews();
+
+            builder.Services.Configure<IdentityOptions>(x =>
+            {
+                x.Password.RequireDigit = true;
+                x.Password.RequireNonAlphanumeric = false;
+                x.Password.RequireUppercase = true;
+                x.Password.RequiredLength = 6;
+            });
+
             builder.Services.AddScoped<ILibraryService, MovieHub.Services.LibraryService>();
             var app = builder.Build();
 

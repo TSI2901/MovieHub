@@ -42,5 +42,10 @@ namespace MovieHub.Common
             public const int StudioNameMinLength = 1;
             public const int StudioNameMaxLength = 50;
         }
+        public static class CommentConstants
+        {
+            public const int CommentMinLength = 1;
+            public const int CommentMaxLength = 500;
+        }
     }
 }
