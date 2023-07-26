@@ -17,5 +17,10 @@ namespace Movie_Hub.Controllers
             var models =  await service.GetAllMovies();
             return View(models);
         }
+        
+        public IActionResult Add()
+        {
+            return View();
+        }
     }
 }

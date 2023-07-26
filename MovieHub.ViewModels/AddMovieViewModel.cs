@@ -23,9 +23,7 @@ namespace MovieHub.ViewModels
         [DisplayFormat(DataFormatString = "yyyy-MM-dd H:mm", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
 
-        [Required]
-        [StringLength(GeneralApplicationConstants.DirectorConstants.DirectorNameMaxLength, MinimumLength = GeneralApplicationConstants.DirectorConstants.DirectorNameMinLength)]
-        public string DirectorsNames { get; set; } = null!;
+        public ICollection<RewardViewModel> Rewards { get; set; } = new HashSet<RewardViewModel>();
 
         [Required]
         public int MovieLength { get; set; }
