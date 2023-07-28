@@ -10,5 +10,8 @@ namespace MovieHub.Contracts
     public interface ILibraryService
     {
          Task<IEnumerable<AllMoviesViewModel>> GetAllMovies();
+         Task<AddMovieViewModel> GetNewAddMovieModelAsync();
+         //Task<AddMovieViewModel> GetNewAddMovieModelAsync();
+         //Task<AddMovieViewModel> GetNewAddMovieModelAsync();
     }
 }

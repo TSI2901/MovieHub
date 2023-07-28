@@ -23,10 +23,15 @@ namespace MovieHub.ViewModels
         [DisplayFormat(DataFormatString = "yyyy-MM-dd H:mm", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
 
-        public ICollection<RewardViewModel> Rewards { get; set; } = new HashSet<RewardViewModel>();
+        public ICollection<RewardViewModel>? Rewards { get; set; } 
+        public ICollection<CategoryViewModel> Categories { get; set; } = new HashSet<CategoryViewModel>();
 
         [Required]
         public int MovieLength { get; set; }
+
+        [Required]
+        [StringLength(GeneralApplicationConstants.StudioConstants.StudioNameMaxLength, MinimumLength = GeneralApplicationConstants.StudioConstants.StudioNameMinLength)]
+        public string StudioName { get; set; } = null!;
 
         [Required]
         public string ImgURL { get; set; } = null!;

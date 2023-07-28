@@ -18,6 +18,7 @@ namespace MovieHub.Data.Models
             MovieDirectors = new HashSet<MovieDirector>();
             Categories = new HashSet<MovieCategory>();
             Comments = new List<Comment>();
+            MovieLikes = new HashSet<MovieLike>();
         }
         [Key]
         public Guid Id { get; set; }
@@ -55,5 +56,7 @@ namespace MovieHub.Data.Models
         public ICollection<Reward> Rewards { get; set; }
 
         public ICollection<MovieCategory> Categories { get; set; }
+
+        public ICollection<MovieLike> MovieLikes { get; set; }
     }
 }

@@ -30,5 +30,55 @@ namespace MovieHub.Services
                 MovieLength = x.MovieLength
             }).ToListAsync();
         }
+
+        public async Task<AddMovieViewModel> GetNewAddMovieModelAsync()
+        {
+            var categories = await db.Categories.Select(x => new CategoryViewModel
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToListAsync();
+
+            var rewads = await db.Rewards.Select(x => new RewardViewModel
+            {
+                Id = x.Id,
+                Title = x.Title
+            }).ToListAsync();
+
+            var model = new AddMovieViewModel()
+            {
+                Categories = categories,
+                Rewards = rewads
+            };
+            return model;
+        }
+        public async Task<AddDirectorViewModel> GetNewAddDirectorModelAsync()
+        {
+            var rewads = await db.Rewards.Select(x => new RewardViewModel
+            {
+                Id = x.Id,
+                Title = x.Title
+            }).ToListAsync();
+
+            var model = new AddDirectorViewModel()
+            {
+                Rewards = rewads
+            };
+            return model;
+        }
+        public async Task<AddActorViewModel> GetNewAddActorModelAsync()
+        {
+            var rewads = await db.Rewards.Select(x => new RewardViewModel
+            {
+                Id = x.Id,
+                Title = x.Title
+            }).ToListAsync();
+
+            var model = new AddActorViewModel()
+            {
+                Rewards = rewads
+            };
+            return model;
+        }
     }
 }

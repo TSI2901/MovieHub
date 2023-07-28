@@ -21,6 +21,7 @@ public class MovieHubDbContext : IdentityDbContext<IdentityUser>
     public DbSet<MovieActor> MoviesActors { get; set; } = null!;
     public DbSet<MovieCategory> MoviesCategories { get; set; } = null!;
     public DbSet<MovieDirector> MoviesDirectors { get; set; } = null!;
+    public DbSet<MovieLike> MovieLikes { get; set; } = null!;
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,6 +38,10 @@ public class MovieHubDbContext : IdentityDbContext<IdentityUser>
         {
             x.HasKey(x => new { x.MovieId, x.CategoryId });
         });
+        modelBuilder.Entity<MovieLike>(x =>
+        {
+            x.HasKey(x => new { x.MovieId, x.FollowerId });
+        }); 
 
         modelBuilder.Entity<Movie>()
             .Property(m => m.Budget)
@@ -158,6 +163,11 @@ public class MovieHubDbContext : IdentityDbContext<IdentityUser>
                {
                    Id = Guid.NewGuid(),
                    Title = "Oscar"
+               },
+               new Reward()
+               {
+                   Id = Guid.NewGuid(),
+                   Title = "None"
                },
                new Reward()
                {
