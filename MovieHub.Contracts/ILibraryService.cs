@@ -11,6 +11,8 @@ namespace MovieHub.Contracts
     {
          Task<IEnumerable<AllMoviesViewModel>> GetAllMovies();
          Task<AddMovieViewModel> GetNewAddMovieModelAsync();
+        Task<AddDirectorViewModel> GetNewAddDirectorModelAsync();
+        Task<AddActorViewModel> GetNewAddActorModelAsync();
          //Task<AddMovieViewModel> GetNewAddMovieModelAsync();
          //Task<AddMovieViewModel> GetNewAddMovieModelAsync();
     }

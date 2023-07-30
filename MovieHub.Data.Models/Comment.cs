@@ -21,6 +21,12 @@ namespace MovieHub.Data.Models
         public string CommentEssence { get; set; } = null!;
 
         [Required]
+        [ForeignKey("Movie")]
+        public Guid MovieId { get; set; }
+        [Required]
+        public Movie Movie { get; set; } = null!;
+
+        [Required]
         [ForeignKey("Author")]
         public string AuthorId { get; set; } = null!;
         [Required]

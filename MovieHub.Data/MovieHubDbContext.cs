@@ -18,6 +18,7 @@ public class MovieHubDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Studio> Studios { get; set; } = null!;
     public DbSet<Category> Categories { get; set; } = null!;
     public DbSet<Reward> Rewards { get; set; } = null!;
+    public DbSet<Comment> Comments { get; set; } = null!;
     public DbSet<MovieActor> MoviesActors { get; set; } = null!;
     public DbSet<MovieCategory> MoviesCategories { get; set; } = null!;
     public DbSet<MovieDirector> MoviesDirectors { get; set; } = null!;
