@@ -81,9 +81,9 @@ namespace MovieHub.Services
             return model;
         }
 
-        public async Task<MovieDetails?> GetMovieByIdAsync(Guid id)
+        public async Task<MovieDetailsViewModel?> GetMovieByIdAsync(Guid id)
         {
-            return await db.Movies.Where(x => x.Id == id).Select(x => new MovieDetails
+            return await db.Movies.Where(x => x.Id == id).Select(x => new MovieDetailsViewModel
             {
                 Id = x.Id,
                 Title = x.Title,
@@ -101,9 +101,9 @@ namespace MovieHub.Services
             }).FirstOrDefaultAsync();
         }
 
-        public async Task<ActorDetails?> GetActorByIdAsync(Guid id)
+        public async Task<ActorDetailsViewModel?> GetActorByIdAsync(Guid id)
         {
-            return await db.Actors.Where(x => x.Id == id).Select(x => new ActorDetails
+            return await db.Actors.Where(x => x.Id == id).Select(x => new ActorDetailsViewModel
             {
                 Id = x.Id,
                 FirstName = x.FirstName,
@@ -117,9 +117,9 @@ namespace MovieHub.Services
             }).FirstOrDefaultAsync();
         }
 
-        public async Task<DirectorDetails?> GetDirectorByIdAsync(Guid id)
+        public async Task<DirectorDetailsViewModel?> GetDirectorByIdAsync(Guid id)
         {
-            return await db.Directors.Where(x => x.Id == id).Select(x => new DirectorDetails
+            return await db.Directors.Where(x => x.Id == id).Select(x => new DirectorDetailsViewModel
             {
                 Id = x.Id,
                 FirstName = x.FirstName,
