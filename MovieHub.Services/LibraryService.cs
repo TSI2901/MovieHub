@@ -80,5 +80,57 @@ namespace MovieHub.Services
             };
             return model;
         }
+
+        public async Task<MovieDetails?> GetMovieByIdAsync(Guid id)
+        {
+            return await db.Movies.Where(x => x.Id == id).Select(x => new MovieDetails
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Description = x.Description,
+                ReleaseDate = x.ReleaseDate,
+                DirectorId = x.DirectorId,
+                ImgURL = x.ImgURL,
+                Budget = x.Budget,
+                MovieActors = x.MovieActors,
+                Comments = x.Comments,
+                MovieDirectors = x.MovieDirectors,
+                Rewards = x.Rewards,
+                Categories = x.Categories,
+                MovieLikes = x.MovieLikes
+            }).FirstOrDefaultAsync();
+        }
+
+        public async Task<ActorDetails?> GetActorByIdAsync(Guid id)
+        {
+            return await db.Actors.Where(x => x.Id == id).Select(x => new ActorDetails
+            {
+                Id = x.Id,
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                ImgURL= x.ImgURL,
+                BornDate = x.BornDate,
+                Description = x.Description,
+                BornCityName = x.BornCityName,
+                Rewards = x.Rewards,
+                Movies = x.Movies
+            }).FirstOrDefaultAsync();
+        }
+
+        public async Task<DirectorDetails?> GetDirectorByIdAsync(Guid id)
+        {
+            return await db.Directors.Where(x => x.Id == id).Select(x => new DirectorDetails
+            {
+                Id = x.Id,
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                ImgURL = x.ImgURL,
+                BornDate = x.BornDate,
+                Description = x.Description,
+                BornCityName = x.BornCityName,
+                Rewards = x.Rewards,
+                Movies = x.Movies
+            }).FirstOrDefaultAsync();
+        }
     }
 }
