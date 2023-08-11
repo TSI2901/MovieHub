@@ -6,7 +6,7 @@ namespace Movie_Hub.Areas.Admin.Controllers
 {
     [Area(AdminArea)]
     [Authorize(Roles = AdminRole)]
-    public class BaseAdminCotroller : Controller
+    public class BaseAdminController : Controller
     {
         public string GetUserID()
         {
