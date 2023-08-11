@@ -14,6 +14,7 @@ namespace MovieHub.Data.Models
         {
             Rewards = new List<Reward>();
             Movies = new HashSet<MovieActor>();
+            Comments = new List<Comment>();
         }
         [Key]
         public Guid Id { get; set; }
@@ -34,7 +35,7 @@ namespace MovieHub.Data.Models
         public DateTime BornDate { get; set; }
 
         [DisplayFormat(DataFormatString = "yyyy-MM-dd H:mm", ApplyFormatInEditMode = true)]
-        public DateTime DeathDate { get; set; }
+        public DateTime? DeathDate { get; set; }
 
         [Required]
         [MaxLength(GeneralApplicationConstants.ActorConstants.DescriptionMaxLength)]
@@ -47,5 +48,7 @@ namespace MovieHub.Data.Models
         public ICollection<Reward> Rewards { get; set; }
 
         public ICollection<MovieActor> Movies { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
     }
 }

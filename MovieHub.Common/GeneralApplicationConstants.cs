@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +9,8 @@ namespace MovieHub.Common
 {
     public static class GeneralApplicationConstants
     {
+        public const string AdminArea = "Admin";
+        public const string AdminRole = "Admin";
         public static class MovieConstants
         {
             public const int MovieTitleMinLength = 1;//There is a bunch of movies with one character as a name

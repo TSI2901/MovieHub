@@ -35,9 +35,6 @@ namespace MovieHub.Data.Models
         [DisplayFormat(DataFormatString = "yyyy-MM-dd H:mm", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
 
-        [Required]
-        [ForeignKey("Director")]
-        public Guid DirectorId { get; set; }
 
         [Required]
         public int MovieLength { get; set; }
@@ -46,6 +43,14 @@ namespace MovieHub.Data.Models
         public string ImgURL { get; set; } = null!;
 
         public decimal Budget { get; set; }
+
+       
+
+        [Required]
+        [ForeignKey("MovieStudio")]
+        public Guid StudioId { get; set; }
+
+        public Studio MovieStudio { get; set; }
 
         public ICollection<MovieActor> MovieActors { get; set; }
 

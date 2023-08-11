@@ -14,6 +14,7 @@ namespace MovieHub.Data.Models
         {
             Rewards = new List<Reward>();
             Movies = new HashSet<MovieDirector>();
+            Comments = new List<Comment>();
         }
         [Key]
         public Guid Id { get; set; }
@@ -46,5 +47,7 @@ namespace MovieHub.Data.Models
         public ICollection<Reward> Rewards { get; set; }
 
         public ICollection<MovieDirector> Movies { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
     }
 }

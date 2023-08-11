@@ -18,11 +18,10 @@ namespace MovieHub
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<MovieHubDbContext>();
-            builder.Services.AddControllersWithViews();
+
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<MovieHubDbContext>();
             builder.Services.AddControllersWithViews();
 
@@ -35,6 +34,12 @@ namespace MovieHub
             });
 
             builder.Services.AddScoped<ILibraryService, MovieHub.Services.LibraryService>();
+            
+            builder.Services.AddScoped<IMovieService, MovieHub.Services.MovieService>();
+            
+            builder.Services.AddScoped<IActorService, MovieHub.Services.ActorService>();
+           
+            builder.Services.AddScoped<IDirectorService, MovieHub.Services.DirectorService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -56,6 +61,14 @@ namespace MovieHub
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+            });
 
             app.MapControllerRoute(
                 name: "default",

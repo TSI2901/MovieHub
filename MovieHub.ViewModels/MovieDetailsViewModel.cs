@@ -18,9 +18,6 @@ namespace MovieHub.ViewModels
         
         public DateTime ReleaseDate { get; set; }
 
-       
-        public Guid DirectorId { get; set; }
-
 
         public int MovieLength { get; set; }
 
@@ -28,6 +25,7 @@ namespace MovieHub.ViewModels
         public string ImgURL { get; set; } = null!;
 
         public decimal Budget { get; set; }
+
 
         public ICollection<MovieActor> MovieActors { get; set; } = new HashSet<MovieActor>();
 
