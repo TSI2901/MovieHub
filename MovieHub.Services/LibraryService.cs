@@ -1,10 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieHub.Contracts;
 using MovieHub.Data;
+using MovieHub.Data.Models;
 using MovieHub.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,106 +35,65 @@ namespace MovieHub.Services
             }).ToListAsync();
         }
 
-        public async Task<AddMovieViewModel> GetNewAddMovieModelAsync()
+       
+
+        public async Task<IEnumerable<AllMoviesViewModel>> GetLikedMovies(string userId)
         {
-            var categories = await db.Categories.Select(x => new CategoryViewModel
+            return await db.MovieLikes.Where(x => x.FollowerId == userId).Select(x => new AllMoviesViewModel
             {
-                Id = x.Id,
-                Name = x.Name
+                Id = x.MovieId,
+                Name = x.Movie.Title,
+                ImgURL = x.Movie.ImgURL,
+                CreatedOn = x.Movie.ReleaseDate,
+                Categories = x.Movie.Categories.Select(x => x.Category.Name).ToList(),
+                MovieLength = x.Movie.MovieLength
             }).ToListAsync();
+        }
 
-            var rewads = await db.Rewards.Select(x => new RewardViewModel
+        public async Task AddCommentAsync(Guid movieId, string comment, string authorId)
+        {
+            var com = new Comment
             {
-                Id = x.Id,
-                Title = x.Title
-            }).ToListAsync();
-
-            var model = new AddMovieViewModel()
-            {
-                Categories = categories,
-                Rewards = rewads
+                Id = Guid.NewGuid(),
+                CommentEssence = comment,
+                AuthorId = authorId,
+                MovieId = movieId
             };
-            return model;
-        }
-        public async Task<AddDirectorViewModel> GetNewAddDirectorModelAsync()
-        {
-            var rewads = await db.Rewards.Select(x => new RewardViewModel
+            var movie = await db.Movies.FirstOrDefaultAsync(x => x.Id == movieId);
+            if (movie != null)
             {
-                Id = x.Id,
-                Title = x.Title
-            }).ToListAsync();
-
-            var model = new AddDirectorViewModel()
-            {
-                Rewards = rewads
-            };
-            return model;
-        }
-        public async Task<AddActorViewModel> GetNewAddActorModelAsync()
-        {
-            var rewads = await db.Rewards.Select(x => new RewardViewModel
-            {
-                Id = x.Id,
-                Title = x.Title
-            }).ToListAsync();
-
-            var model = new AddActorViewModel()
-            {
-                Rewards = rewads
-            };
-            return model;
+                movie.Comments.Add(com);
+                await db.Comments.AddAsync(com);
+                await db.SaveChangesAsync();
+            }
         }
 
-        public async Task<MovieDetailsViewModel?> GetMovieByIdAsync(Guid id)
+        public async Task RemoveComment(Guid movieId, Guid commentId)
         {
-            return await db.Movies.Where(x => x.Id == id).Select(x => new MovieDetailsViewModel
+            var com = await db.Comments.FirstOrDefaultAsync(x => x.Id == commentId);
+            var movie = await db.Movies.FirstOrDefaultAsync(x => x.Id == movieId);
+
+            if (movie != null && com != null)
             {
-                Id = x.Id,
-                Title = x.Title,
-                Description = x.Description,
-                ReleaseDate = x.ReleaseDate,
-                DirectorId = x.DirectorId,
-                ImgURL = x.ImgURL,
-                Budget = x.Budget,
-                MovieActors = x.MovieActors,
-                Comments = x.Comments,
-                MovieDirectors = x.MovieDirectors,
-                Rewards = x.Rewards,
-                Categories = x.Categories,
-                MovieLikes = x.MovieLikes
-            }).FirstOrDefaultAsync();
+                movie.Comments.Remove(com);
+                db.Comments.Remove(com);
+                await db.SaveChangesAsync();
+            }
+            
         }
 
-        public async Task<ActorDetailsViewModel?> GetActorByIdAsync(Guid id)
+        public Task EditComment(Guid commnetId)
         {
-            return await db.Actors.Where(x => x.Id == id).Select(x => new ActorDetailsViewModel
-            {
-                Id = x.Id,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                ImgURL= x.ImgURL,
-                BornDate = x.BornDate,
-                Description = x.Description,
-                BornCityName = x.BornCityName,
-                Rewards = x.Rewards,
-                Movies = x.Movies
-            }).FirstOrDefaultAsync();
+            throw new NotImplementedException();
         }
 
-        public async Task<DirectorDetailsViewModel?> GetDirectorByIdAsync(Guid id)
-        {
-            return await db.Directors.Where(x => x.Id == id).Select(x => new DirectorDetailsViewModel
-            {
-                Id = x.Id,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                ImgURL = x.ImgURL,
-                BornDate = x.BornDate,
-                Description = x.Description,
-                BornCityName = x.BornCityName,
-                Rewards = x.Rewards,
-                Movies = x.Movies
-            }).FirstOrDefaultAsync();
-        }
+       
+
+       
+     
+
+        
     }
+    
+    
 }

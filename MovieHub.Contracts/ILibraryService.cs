@@ -10,14 +10,14 @@ namespace MovieHub.Contracts
     public interface ILibraryService
     {
         Task<IEnumerable<AllMoviesViewModel>> GetAllMovies();
-        Task<AddMovieViewModel> GetNewAddMovieModelAsync();
-        Task<AddDirectorViewModel> GetNewAddDirectorModelAsync();
-        Task<AddActorViewModel> GetNewAddActorModelAsync();
-        Task<MovieDetailsViewModel?> GetMovieByIdAsync(Guid id);
-        Task<ActorDetailsViewModel?> GetActorByIdAsync(Guid id);
-        Task<DirectorDetailsViewModel?> GetDirectorByIdAsync(Guid id);
+       
+        Task<IEnumerable<AllMoviesViewModel>> GetLikedMovies(string userId);
+        Task AddCommentAsync(Guid movieId, string comment, string authorId);
+        Task RemoveComment(Guid movieId, Guid commentId);
+        Task EditComment(Guid commnetId);
+        //Task<MovieDetailsViewModel?> GetMovieById(Guid id);
 
-         //Task<AddMovieViewModel> GetNewAddMovieModelAsync();
-         //Task<AddMovieViewModel> GetNewAddMovieModelAsync();
+        
+        
     }
 }
