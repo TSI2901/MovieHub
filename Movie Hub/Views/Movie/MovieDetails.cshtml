@@ -1,0 +1,128 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model MovieHub.ViewModels.MovieDetailsViewModel
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Info Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top; /* Align content to the top of cells */
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+
+
+    <h1>Movie Information</h1>
+    <table>
+        <tr>
+            <th>Title</th>
+            <td>@Model.Title</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>@Model.Description</td>
+        </tr>
+        <tr>
+            <th>Budget</th>
+            <td>@Model.Budget</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td><img src="@Model.ImgURL" alt="Movie Poster"></td>
+        </tr>
+        <tr>
+            <th>Release Date</th>
+            <td>@Model.ReleaseDate</td>
+        </tr>
+        <tr>
+            <th>Length</th>
+            <td>@Model.MovieLength</td>
+        </tr>
+        <tr>
+            <th>Actors</th>
+            <td>
+                @foreach (var actor in Model.MovieActors)
+                {
+                    <a asp-controller="Actor" asp-action="ActorDetails" asp-route-id="@actor.ActorId" class="btn btn-warning mb-2 w-100 p-3 fw-bold">@actor.Actor.FirstName @actor.Actor.LastName</a>
+                }
+            @if (User.IsInRole(AdminRole))
+            {
+                <a asp-controller="Actor" asp-action="AddActor" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Add actor</a>
+            }
+                 
+            </td>
+        </tr>
+        <tr>
+            <th>Directors</th>
+            <td>
+                @foreach (var actor in Model.MovieDirectors)
+                {
+                    <a asp-controller="Director" asp-action="DirectorDetails" asp-route-id="@actor.DirectorId" class="btn btn-warning mb-2 w-100 p-3 fw-bold">@actor.Director.FirstName @actor.Director.LastName</a>
+                }
+            @if (User.IsInRole(AdminRole))
+            {
+                
+                <a asp-controller="Director" asp-action="AddDirector" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Add director</a>
+            }
+                 
+             </td>
+        </tr>
+        <tr>
+            <th>Categories</th>
+            <td>
+                <ul>
+                    @foreach (var category in Model.Categories)
+                    {
+                        if (category != null)
+                        {
+                            <li>@category.Category.Name</li>
+                        }
+                    }
+                </ul>
+               
+                 
+             </td>
+        </tr>
+        <tr>
+            <th>Awards</th>
+            <td>
+                <ul>
+                    @foreach (var award in Model.Rewards)
+                    {
+                        if (award != null)
+                        {
+                            <li>@award.Title</li>
+                        }
+                    }
+                </ul>
+               
+                 
+             </td>
+        </tr>
+    </table>
+@if (User.IsInRole(AdminRole))
+{
+
+    
+    <a asp-controller="Movie" asp-action="DeleteMovie" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Delete movie</a>
+}
+      
+       <a asp-controller="Movie" asp-action="Like" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Like movie</a>

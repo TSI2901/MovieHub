@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<MovieHub.ViewModels.AllMoviesViewModel>
 @{
-	ViewData["Title"] = "Movie Library";
+	ViewData["Title"] = "Heloo";
 }
 
 <div class="text-center row">
@@ -23,13 +23,20 @@
             </div>
 
             <a asp-controller="Movie" asp-action="MovieDetails" asp-route-id="@movie.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Details</a>
-            
-            @if (User.IsInRole(AdminRole))
+            <form class="input-group-sm " asp-controller="Movie" asp-action="RemoveLike" asp-route-id="@movie.Id">
+                    <input type="submit" value="Remove Like" class="fs-6 btn btn-warning mb-3 w-100 p-3 fw-bold" />
+                </form>
+           @* @if (User.Identity.Name == movie.Organiser)
             {
-                <a asp-controller="Movie" asp-action="EditMovie" asp-route-id="@movie.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
-                
+                <a asp-controller="Event" asp-action="Edit" asp-route-id="@movie.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
             }
-            
+            else
+            {
+                
+                <form class="input-group-sm " asp-controller="Library" asp-action="RemoveLike" asp-route-id="@movie.Id">
+                    <input type="submit" value="Like" class="fs-6 btn btn-warning mb-3 w-100 p-3 fw-bold" />
+                </form>
+            }*@
         </div>
     }
 </div>

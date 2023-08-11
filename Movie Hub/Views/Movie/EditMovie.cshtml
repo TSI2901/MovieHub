@@ -1,0 +1,131 @@
+﻿@model MovieHub.ViewModels.AddMovieViewModel
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form asp-action="EditMovie" method="post">
+
+            @*Movie name*@
+            <div class="mb-3">
+                <label asp-for="@Model.Title" class="form-label-add-edit">Name</label>
+                <input asp-for="@Model.Title" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+
+           @* Movie Description*@
+            <div class="mb-3">
+                <label asp-for="@Model.Description" class="form-label-add-edit">Description</label>
+                <textarea asp-for="@Model.Description" class="form-control" aria-required="true" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            @*Movie Release Date*@
+             <div class="mb-3">
+                <label asp-for="@Model.ReleaseDate" class="form-label-add-edit">Release Date</label>
+                <input asp-for="@Model.ReleaseDate" class="form-control" aria-required="true" value="@DateTime.Now.ToString("yyyy-MM-dd H:mm")" />
+                <span asp-validation-for="@Model.ReleaseDate" class="text-danger"></span>
+            </div>
+
+            @*First Category*@
+             <div class="mb-3">
+                <label asp-for="@Model.FirstCategorieId.Id" class="form-label-add-edit">Category</label>
+                <select asp-for="@Model.FirstCategorieId.Id" class="form-control" aria-required="true">
+                    @foreach (var type in Model.Categories)
+                    {
+                        <option value="@type.Id">@type.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.FirstCategorieId.Id" class="text-danger"></span>
+            </div>
+
+            @*Second Category*@
+            <div class="mb-3">
+                <label asp-for="@Model.SecondCategorieId.Id" class="form-label-add-edit">Category</label>
+                <select asp-for="@Model.SecondCategorieId.Id" class="form-control" aria-required="false">
+                    @foreach (var type in Model.Categories)
+                    {
+                        <option value="@type.Id">@type.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.SecondCategorieId.Id" class="text-danger"></span>
+            </div>
+
+            @*Third Category*@
+             <div class="mb-3">
+                <label asp-for="@Model.ThirdCategorieId.Id" class="form-label-add-edit">Category</label>
+                <select asp-for="@Model.ThirdCategorieId.Id" class="form-control" aria-required="false">
+                    @foreach (var type in Model.Categories)
+                    {
+                        <option value="@type.Id">@type.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.ThirdCategorieId.Id" class="text-danger"></span>
+            </div>
+
+            @*First Reward*@
+            <div class="mb-3">
+                <label asp-for="@Model.FirstReward.Id" class="form-label-add-edit">Award</label>
+                <select asp-for="@Model.FirstReward.Id" class="form-control" aria-required="false">
+                    @foreach (var type in Model.Rewards)
+                    {
+                        <option value="@type.Id">@type.Title</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.FirstReward.Id" class="text-danger"></span>
+            </div>
+
+            @*Second Reward*@
+            <div class="mb-3">
+                <label asp-for="@Model.SecondReward.Id" class="form-label-add-edit">Award</label>
+                <select asp-for="@Model.SecondReward.Id" class="form-control" aria-required="false">
+                    @foreach (var type in Model.Rewards)
+                    {
+                        <option value="@type.Id">@type.Title</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.SecondReward.Id" class="text-danger"></span>
+            </div>
+
+            @*Third Reward*@
+            <div class="mb-3">
+                <label asp-for="@Model.ThirdReward.Id" class="form-label-add-edit">Award</label>
+                <select asp-for="@Model.ThirdReward.Id" class="form-control" aria-required="false">
+                    @foreach (var type in Model.Rewards)
+                    {
+                        <option value="@type.Id">@type.Title</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.ThirdReward.Id" class="text-danger"></span>
+            </div>
+
+             <div class="mb-3">
+                <label asp-for="@Model.MovieLength" class="form-label-add-edit">Movie Length</label>
+                <input asp-for="@Model.MovieLength" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.MovieLength" class="text-danger"></span>
+            </div>
+
+             <div class="mb-3">
+                <label asp-for="@Model.StudioName" class="form-label-add-edit">Movie Studio</label>
+                <input asp-for="@Model.StudioName" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.StudioName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="@Model.ImgURL" class="form-label-add-edit">IMG url</label>
+                <input asp-for="@Model.ImgURL" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.ImgURL" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="@Model.Budget" class="form-label-add-edit">Movie Budget</label>
+                <input asp-for="@Model.Budget" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.Budget" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-warning mb-2 w-100 p-3 fw-bold" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,90 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model MovieHub.ViewModels.DirectorDetailsViewModel
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Info Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top; /* Align content to the top of cells */
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+
+
+    <h1>Director Information</h1>
+    <table>
+        <tr>
+            <th>First name</th>
+            <td>@Model.FirstName</td>
+        </tr>
+        <tr>
+            <th>Last name</th>
+            <td>@Model.LastName</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>@Model.Description</td>
+        </tr>
+        <tr>
+            <th>Born city</th>
+            <td>@Model.BornCityName</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td><img src="@Model.ImgURL" alt="Director photo"></td>
+        </tr>
+        <tr>
+            <th>Born</th>
+            <td>@Model.BornDate</td>
+        </tr>
+        
+        <tr>
+            <th>Movies</th>
+            <td>
+                @foreach (var movie in Model.Movies)
+                {
+                    <a asp-controller="Movie" asp-action="MovieDetails" asp-route-id="@movie.MovieId" class="btn btn-warning mb-2 w-100 p-3 fw-bold">@movie.Movie.Title</a>
+                }
+                 
+            </td>
+        </tr>
+        <tr>
+            <th>Awards</th>
+            <td>
+                <ul>
+                    @foreach (var award in Model.Rewards)
+                    {
+                        if (award != null)
+                        {
+                            <li>@award.Title</li>
+                        }
+                    }
+                </ul>
+               
+                 
+             </td>
+        </tr>
+    </table>
+    <a asp-controller="Director" asp-action="EditDirector" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
+     <a asp-controller="Director" asp-action="DeleteDirector" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Delete director</a>
+
+     
